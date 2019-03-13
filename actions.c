@@ -6,7 +6,7 @@
 /*   By: yruda <yruda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 03:42:13 by yruda             #+#    #+#             */
-/*   Updated: 2019/03/13 22:22:03 by yruda            ###   ########.fr       */
+/*   Updated: 2019/03/13 22:52:24 by yruda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int		key_press(int key, t_map *m)
 /*	if(key == KEY_UP) //------------------change
 		m->x_centre++;*/
 	rotate_z(m, m->pts);
-	rotate_y(m, m->pts);
 	rotate_x(m, m->pts);
+	rotate_y(m, m->pts);
 	actions_e(m);
 	return (0);
 }
