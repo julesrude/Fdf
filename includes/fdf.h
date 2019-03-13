@@ -6,7 +6,7 @@
 /*   By: yruda <yruda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 20:40:02 by yruda             #+#    #+#             */
-/*   Updated: 2019/02/19 18:30:03 by yruda            ###   ########.fr       */
+/*   Updated: 2019/03/13 21:32:31 by yruda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,25 +35,40 @@
 
 #define WIN_BORD 100
 
-#define ANGLE 0.0125
+#define ANGLE 0.25
 
 #define KEY_LEFT 123
 #define KEY_RIGHT 124
 #define KEY_DOWN 125
 #define KEY_UP 126
+#define KEY_1 83
+#define KEY_2 84
+#define KEY_3 85
+#define KEY_4 86
+#define KEY_5 87
+#define KEY_6 88
+#define KEY_7 89
+#define KEY_8 91
+#define KEY_9 92
 
 typedef struct	s_points
 {
 	int			x0;// calculated original 3d coordinates
 	int			y0;// calculated original 3d coordinates
-	int			z0;//		((now)what is given) or calculated original
+	int			z0;// calculated original
 	int			x;//current calculated 3d coordinates
 	int			y;//current calculated 3d coordinates
 	int			z;//current calculated 3d coordinates
 	int			color;//	given
-	int			x_plane;//		current
+	int			x_plane;//		current on 2d plane
 	int			y_plane;//		current
 }				t_points;
+
+/* pts[y][x]
+** x starts with start_x
+** y starts with 0
+** z starts with start_y
+*/
 
 typedef struct	s_map
 {
@@ -66,6 +81,9 @@ typedef struct	s_map
 	int			width;
 	int			length;
 	int			height;
+	int			x_centre;
+	int			y_centre;
+	int			z_centre;
 }				t_map;
 
 typedef struct s_intlst
@@ -98,7 +116,7 @@ float			to_radians(int degrees);
 /*
 **	actions.c
 */
-int				actions(int key, t_map *m);
+int				key_press(int key, t_map *m);
 int				actions_m(int button, int x, int y, t_map *m);
 int				actions_e(t_map *m);
 
@@ -107,6 +125,7 @@ int				actions_e(t_map *m);
 */
 void			rotate_x(t_map *m, t_points **pts);
 void			rotate_z(t_map *m, t_points **pts);
+void			rotate_y(t_map *m, t_points **pts);
 
 /*
 **	projection.c

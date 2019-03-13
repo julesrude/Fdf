@@ -6,7 +6,7 @@
 /*   By: yruda <yruda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 15:43:00 by yruda             #+#    #+#             */
-/*   Updated: 2019/02/19 17:35:55 by yruda            ###   ########.fr       */
+/*   Updated: 2019/03/13 17:20:52 by yruda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,26 @@ int     main(int argc, char **argv)
 	int		fd;
 
 	m = (t_map *)malloc(sizeof(t_map));
-	if (argc > 1)
+	if (argc == 1)
 	{
-		fd = open(argv[1], O_RDONLY);
-		if (fd < 0 || read(fd, (void*)0, 0) < 0)
-		{
-			perror("open");
-			return (0);
-		}
-		if (!validate_file(fd, m))
-		{
-			ft_putendl("error: The length of lines should be equal everywhere");
-			return (0);
-		}
-		fd = open(argv[1], O_RDONLY);
-		read_file(fd, m);
+		ft_putendl("usage: ./fdf map");
+		return (0);
 	}
-
+	
+	fd = open(argv[1], O_RDONLY);
+	if (fd < 0 || read(fd, (void*)0, 0) < 0)
+	{
+		perror("open");
+		return (0);
+	}
+	if (!validate_file(fd, m))
+	{
+		ft_putendl("error: The length of lines should be equal everywhere");
+		return (0);
+	}
+	fd = open(argv[1], O_RDONLY);
+	read_file(fd, m);
+		
 
 	m->mlx = mlx_init();
 	m->win = mlx_new_window(m->mlx, WIN_W, WIN_H, "jules");
@@ -46,7 +49,7 @@ int     main(int argc, char **argv)
 	make_grid(m);
 	put_dots(m, &isometric);
 	draw_2dgrid(m, &isometric);
-	mlx_key_hook(m->win, actions, m);
+	mlx_hook(m->win, 2, 0, key_press, m);
 	mlx_mouse_hook(m->win, actions_m, m);
 	//mlx_expose_hook(m->win, actions_e, m);
 	mlx_loop(m->mlx);

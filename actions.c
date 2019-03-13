@@ -6,35 +6,30 @@
 /*   By: yruda <yruda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 03:42:13 by yruda             #+#    #+#             */
-/*   Updated: 2019/02/19 18:10:51 by yruda            ###   ########.fr       */
+/*   Updated: 2019/03/13 22:22:03 by yruda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		actions(int key, t_map *m)
+int		key_press(int key, t_map *m)
 {
 	if (key == 53)
-	{	
+	{
 		mlx_destroy_window(m->mlx, m->win);
 		exit(EXIT_SUCCESS);
 	}
-	if(key == KEY_LEFT || key == KEY_RIGHT)
-	{
-		if(key == KEY_LEFT)
-			m->z_angle++;
-		else
-			m->z_angle--;
-		rotate_z(m, m->pts);
-	}
-	if(key == KEY_UP || key == KEY_DOWN)
-	{
-		if(key == KEY_UP)
-			m->x_angle++;
-		else
-			m->x_angle--;
-		rotate_x(m, m->pts);
-	}
+	if(key == KEY_4 || key == KEY_6)
+		(key == KEY_4) ? m->z_angle++ : m->z_angle--;
+	if(key == KEY_8 || key == KEY_2)
+		(key == KEY_8) ? m->x_angle++ : m->x_angle--;
+	if(key == KEY_7 || key == KEY_1 || key == KEY_9 || key == KEY_3)
+		(key == KEY_7 || key == KEY_1) ? m->y_angle++ : m->y_angle--;
+/*	if(key == KEY_UP) //------------------change
+		m->x_centre++;*/
+	rotate_z(m, m->pts);
+	rotate_y(m, m->pts);
+	rotate_x(m, m->pts);
 	actions_e(m);
 	return (0);
 }
