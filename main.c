@@ -6,7 +6,7 @@
 /*   By: yruda <yruda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 15:43:00 by yruda             #+#    #+#             */
-/*   Updated: 2019/03/13 17:20:52 by yruda            ###   ########.fr       */
+/*   Updated: 2019/03/14 20:42:10 by yruda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,33 +25,40 @@ int     main(int argc, char **argv)
 		return (0);
 	}
 	
+	g_start = time(NULL);
+	printf(COLOR_YELLOW "START: %ld\n", time(NULL) - g_start);
+
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0 || read(fd, (void*)0, 0) < 0)
 	{
 		perror("open");
 		return (0);
 	}
+	printf(COLOR_RED "BEFORE VALIDATION: %ld\n", time(NULL) - g_start);
 	if (!validate_file(fd, m))
 	{
 		ft_putendl("error: The length of lines should be equal everywhere");
 		return (0);
 	}
 	fd = open(argv[1], O_RDONLY);
+	
+	printf(COLOR_YELLOW "BEFORE READING: %ld\n", time(NULL) - g_start);
+	
 	read_file(fd, m);
-		
+
+	printf(COLOR_YELLOW "AFTER READING: %ld\n", time(NULL) - g_start);
 
 	m->mlx = mlx_init();
 	m->win = mlx_new_window(m->mlx, WIN_W, WIN_H, "jules");
 
-	// t_points pt0 = {0, 0, 0, get_text_rgb("cornflowerblue"), 250, 0};
-	// t_points pt1 = {0, 0, 0, get_text_rgb("cornflowerblue"), 249, 250};
-
 	make_grid(m);
-	put_dots(m, &isometric);
+	//put_dots(m, &isometric);
 	draw_2dgrid(m, &isometric);
+	//draw_line(m, m->pts[0][0], m->pts[1][2]);
+
 	mlx_hook(m->win, 2, 0, key_press, m);
 	mlx_mouse_hook(m->win, actions_m, m);
-	//mlx_expose_hook(m->win, actions_e, m);
+
 	mlx_loop(m->mlx);
 
 	system("leaks fdf");

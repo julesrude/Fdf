@@ -6,7 +6,7 @@
 /*   By: yruda <yruda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 16:43:56 by yruda             #+#    #+#             */
-/*   Updated: 2019/02/19 18:37:02 by yruda            ###   ########.fr       */
+/*   Updated: 2019/03/14 15:38:35 by yruda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void    isometric(t_map *m, t_points **pts)
 		while(j < m->width)
 		{
 			pts[i][j].x_plane = pts[i][j].x;
-            pts[i][j].y_plane = pts[i][j].z;
-            j++;
+			pts[i][j].y_plane = pts[i][j].z;
+			j++;
 		}
 		i++;
     }

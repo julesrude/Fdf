@@ -6,7 +6,7 @@
 /*   By: yruda <yruda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/02 19:10:24 by yruda             #+#    #+#             */
-/*   Updated: 2019/03/13 20:54:47 by yruda            ###   ########.fr       */
+/*   Updated: 2019/03/14 20:50:03 by yruda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,14 @@ int		read_color(char *s)
 	result = 0;
 	if(!ft_strnstr(s, ",0x", len) || !ft_isdigit(s[i]))
 		return (0xffffff);
-	while (ft_isdigit(s[i]) && i >= 0)
+	while ((ft_isdigit(s[i]) || (s[i] >= 'a' && s[i] <= 'f') || (s[i] >= 'A' && s[i] <= 'F')) && i >= 0)
 	{
 		if(ft_isdigit(s[i]))
 			result += (s[i] - '0') * ft_pow(16, len - i - 1);
 		else if (s[i] >= 'a' && s[i] <= 'f')
 			result += (s[i] - 'a' + 10) * ft_pow(16, len - i - 1);
+		else if (s[i] >= 'A' && s[i] <= 'F')
+			result += (s[i] - 'A' + 10) * ft_pow(16, len - i - 1);
 		else
 			return (-1);
 		i--;
@@ -111,7 +113,6 @@ int		read_file(int fd, t_map *m)
 		free(line);
 		i++;
 	}
-	m->height = 20; // CALCULATE!!!!
 	free(line);
 	return (1);
 }

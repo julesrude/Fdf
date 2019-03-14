@@ -6,7 +6,7 @@
 /*   By: yruda <yruda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 23:52:24 by yruda             #+#    #+#             */
-/*   Updated: 2019/03/13 21:39:18 by yruda            ###   ########.fr       */
+/*   Updated: 2019/03/14 20:26:58 by yruda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ void	make_grid(t_map *m)
 		}
 		i++;
 	}
-	m->x_centre = start_x + scale * j / 2;
-	m->y_centre = scale * i / 2;
+	m->x_centre = start_x + scale * (j - 1) / 2;
+	m->y_centre = scale * (i - 1) / 2;
 	m->z_centre = max + (WIN_H - max - start_y) / 2;
 	printf("max: %i\n", max);
 	printf("x_centre: %i\n", m->x_centre);

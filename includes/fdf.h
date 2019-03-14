@@ -6,7 +6,7 @@
 /*   By: yruda <yruda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 20:40:02 by yruda             #+#    #+#             */
-/*   Updated: 2019/03/13 21:32:31 by yruda            ###   ########.fr       */
+/*   Updated: 2019/03/14 20:17:20 by yruda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "libft.h"
 
 #include <stdio.h>
+#include <time.h>
 #define COLOR_RED     "\x1b[31m"
 #define COLOR_GREEN   "\x1b[32m"
 #define COLOR_YELLOW  "\x1b[33m"
@@ -26,7 +27,7 @@
 #define COLOR_CYAN    "\x1b[36m"
 #define COLOR_RESET   "\x1b[0m"
 
-#define ABS(x) (((x) >= 0) ? (x) : (-x))
+#define ABS(x)		(((x) >= 0) ? (x) : (-(x)))
 #define MIN(x, y)	(((x) >= (y)) ? (y) : (x))
 #define MAX(x, y)	(((x) >= (y)) ? (x) : (y))
 
@@ -35,8 +36,9 @@
 
 #define WIN_BORD 100
 
-#define ANGLE 0.25
+#define ANGLE 0.05
 
+#define KEY_ESC 53
 #define KEY_LEFT 123
 #define KEY_RIGHT 124
 #define KEY_DOWN 125
@@ -51,17 +53,39 @@
 #define KEY_8 91
 #define KEY_9 92
 
+/*
+COLOR PALLETE
+0x114b5f
+0x1a936f
+0x88d498
+0xc6dabf
+0xf3e9d2
+
+0xb8d8ba
+0xd9dbbc
+0xfcddbc
+0xef959d
+0x69585f
+
+0xe8e2db
+0xfab95b
+0xf5564e
+
+*/
+
+time_t g_start;
+
 typedef struct	s_points
 {
 	int			x0;// calculated original 3d coordinates
-	int			y0;// calculated original 3d coordinates
-	int			z0;// calculated original
+	int			y0;
+	int			z0;
 	int			x;//current calculated 3d coordinates
-	int			y;//current calculated 3d coordinates
-	int			z;//current calculated 3d coordinates
-	int			color;//	given
-	int			x_plane;//		current on 2d plane
-	int			y_plane;//		current
+	int			y;
+	int			z;
+	int			color;//given
+	int			x_plane;//current on 2d plane
+	int			y_plane;
 }				t_points;
 
 /* pts[y][x]
@@ -135,5 +159,7 @@ void 		   isometric(t_map *m, t_points **pts);
 // t_intlst	*ft_ilstnew(size_t size);
 // void		ft_ilstaddback(t_intlst **alst, t_intlst *new);
 // void		ft_ilstdel(t_intlst **alst);
+
+int 		    color_grade (t_points pt0, t_points pt1, int dist, int curr);
 
 #endif

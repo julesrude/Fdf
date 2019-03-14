@@ -1,6 +1,6 @@
 NAME = fdf
 SOURCES = main.c    get_color.c    read_file.c    validate_file.c    draw.c \
-	calculate_img.c actions.c      rotations.c    projection.c
+	calculate_img.c actions.c      rotations.c    projection.c		color_grade.c
 HEADER = includes/
 OBJECTS = $(SOURCES:.c=.o)
 
