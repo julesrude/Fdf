@@ -6,7 +6,7 @@
 /*   By: yruda <yruda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 19:46:39 by yruda             #+#    #+#             */
-/*   Updated: 2019/03/14 20:15:41 by yruda            ###   ########.fr       */
+/*   Updated: 2019/03/20 22:18:31 by yruda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,12 +95,13 @@ void	rotate_y(t_map *m, t_points **pts)
 	}
 }
 
-void	zoom_in(t_map *m, t_points **pts)
+void	zoom(t_map *m, t_points **pts)
 {
 	int		i;
 	int		j;
 	int		x;
 	int		z;
+	int		y;
 
 	i = 0;
 	j = 0;
@@ -111,10 +112,19 @@ void	zoom_in(t_map *m, t_points **pts)
 			while(j < m->width)
 			{
 				x = pts[i][j].x - m->x_centre;
+				y = pts[i][j].y - m->y_centre;
 				z = pts[i][j].z - m->z_centre;
+				pts[i][j].x = x * m->zoom + m->x_centre;
+				pts[i][j].y = y * m->zoom + m->y_centre;
+				pts[i][j].z = z * m->zoom + m->z_centre;
 				j++;
 			}
 			i++;
 		}
 	}
 }
+
+// void		move(t_map *m)
+// {
+// 	m->x_centre
+// }

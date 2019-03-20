@@ -6,7 +6,7 @@
 /*   By: yruda <yruda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 20:40:02 by yruda             #+#    #+#             */
-/*   Updated: 2019/03/14 20:17:20 by yruda            ###   ########.fr       */
+/*   Updated: 2019/03/20 22:12:12 by yruda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,18 @@
 #define COLOR_CYAN    "\x1b[36m"
 #define COLOR_RESET   "\x1b[0m"
 
-#define ABS(x)		(((x) >= 0) ? (x) : (-(x)))
-#define MIN(x, y)	(((x) >= (y)) ? (y) : (x))
-#define MAX(x, y)	(((x) >= (y)) ? (x) : (y))
-
 #define WIN_W 1600
 #define WIN_H 900
+#define MENU_W 100
+#define MENU_H 900
+#define IMAGE_W 1500
+#define IMAGE_H 900
 
 #define WIN_BORD 100
 
-#define ANGLE 0.05
+#define ANGLE M_PI / 180
+#define MOVE_STEP 10
+#define ZOOM_STEP 1.03
 
 #define KEY_ESC 53
 #define KEY_LEFT 123
@@ -52,6 +54,9 @@
 #define KEY_7 89
 #define KEY_8 91
 #define KEY_9 92
+#define KEY_PLUS 69
+#define KEY_MINUS 78
+#define KEY_I 34
 
 /*
 COLOR PALLETE
@@ -94,10 +99,20 @@ typedef struct	s_points
 ** z starts with start_y
 */
 
+typedef struct	s_image
+{
+	void		*img_ptr;
+	char		*addr;
+	int			bpp;
+	int			size_line;
+	char		endian;
+}				t_image;
+
 typedef struct	s_map
 {
 	void		*mlx;
 	void		*win;
+	t_image		img;
 	t_points	**pts;
 	int			x_angle;
 	int			y_angle;
@@ -108,13 +123,11 @@ typedef struct	s_map
 	int			x_centre;
 	int			y_centre;
 	int			z_centre;
+	float		zoom;
+	int			x_shift;
+	int			y_shift;
 }				t_map;
 
-typedef struct s_intlst
-{
-	int				*numbers;
-	struct s_intlst	*next;
-}				t_intlst;
 
 int				get_text_rgb(char *name);
 int				read_color(char *s);
@@ -141,7 +154,6 @@ float			to_radians(int degrees);
 **	actions.c
 */
 int				key_press(int key, t_map *m);
-int				actions_m(int button, int x, int y, t_map *m);
 int				actions_e(t_map *m);
 
 /*
@@ -150,11 +162,13 @@ int				actions_e(t_map *m);
 void			rotate_x(t_map *m, t_points **pts);
 void			rotate_z(t_map *m, t_points **pts);
 void			rotate_y(t_map *m, t_points **pts);
+void			zoom(t_map *m, t_points **pts);
 
 /*
 **	projection.c
 */
-void 		   isometric(t_map *m, t_points **pts);
+void			parallel(t_map *m, t_points **pts);
+void			isometric(t_map *m);
 
 // t_intlst	*ft_ilstnew(size_t size);
 // void		ft_ilstaddback(t_intlst **alst, t_intlst *new);

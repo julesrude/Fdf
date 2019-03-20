@@ -6,7 +6,7 @@
 /*   By: yruda <yruda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 22:09:03 by yruda             #+#    #+#             */
-/*   Updated: 2019/03/14 20:22:27 by yruda            ###   ########.fr       */
+/*   Updated: 2019/03/20 21:52:17 by yruda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,44 +16,57 @@ void	put_pixel(t_map *m, int x, int y, int color)
 {
 	if(x >= 0 && x <= WIN_W && y >= 0 && y <= WIN_H)
 		mlx_pixel_put(m->mlx, m->win, x, y, color);
+/*	int		i;
+
+	i = 0;
+	if (x >= 0 && x <= IMAGE_W && y >= 0 && y <= IMAGE_H)
+	{
+		i = x * m->img.bpp / 8 + y * m->img.size_line;
+		m->img.addr[i] = color;
+	}*/
 }
+/*
+void	set_background(t_image img)
+{
+	ft_bzero(img.addr, (IMAGE_H * img.bpp / 8) * (img.size_line));
+}*/
 
 void	draw_line(t_map *m, t_points pt0, t_points pt1)
 {
 	int		run;
 	int		rise;
 	int		current_diff;
-	int		x = 0;
-	int		y = 0;
+	int		x;
+	int		y;
 
-	run = ABS(pt1.x_plane - pt0.x_plane);
-	rise = ABS(pt1.y_plane - pt0.y_plane);
+	run = abs(pt1.x_plane - pt0.x_plane);
+	rise = abs(pt1.y_plane - pt0.y_plane);
 	current_diff = 0;
-	x = 0;
-	y = 0;
+	x = pt0.x_plane;
+	y = pt0.y_plane;
 	if(rise == 0 && run == 0)
 		put_pixel(m, pt0.x_plane, pt0.y_plane, pt0.color);
 	else if (rise <= run)
-		while (ABS(x) != run)
+		while (x != pt1.x_plane)
 		{
-			put_pixel(m, pt0.x_plane + x, pt0.y_plane + y, 
-				color_grade(pt0, pt1, run, ABS(x)));
+			put_pixel(m, x, y, 
+				color_grade(pt0, pt1, run, x - pt0.x_plane));
 			(pt1.x_plane >= pt0.x_plane) ? x++ : x--;
 			current_diff = current_diff + rise;
-			if (ABS(current_diff * 2 / run) >= 1)
+			if (current_diff * 2 / run != 0)
 			{
 				(pt1.y_plane >= pt0.y_plane) ? y++ : y--;
 				current_diff = current_diff - run;
 			}
 		}
 	else
-		while (ABS(y) != rise)
+		while (y != pt1.y_plane)
 		{
-			put_pixel(m, pt0.x_plane + x, pt0.y_plane + y,
-				color_grade(pt0, pt1, rise,  ABS(y)));
+			put_pixel(m, x, y,
+				color_grade(pt0, pt1, rise, y - pt0.y_plane));
 			(pt1.y_plane >= pt0.y_plane) ? y++ : y--;
 			current_diff = current_diff + run;
-			if (ABS(current_diff * 2 / rise) >= 1)
+			if (current_diff * 2 / rise != 0)
 			{
 				(pt1.x_plane >= pt0.x_plane) ? x++ : x--;
 				current_diff = current_diff - rise;

@@ -6,7 +6,7 @@
 /*   By: yruda <yruda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 15:43:00 by yruda             #+#    #+#             */
-/*   Updated: 2019/03/14 20:42:10 by yruda            ###   ########.fr       */
+/*   Updated: 2019/03/20 20:14:54 by yruda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,29 +38,27 @@ int     main(int argc, char **argv)
 	if (!validate_file(fd, m))
 	{
 		ft_putendl("error: The length of lines should be equal everywhere");
+		system("leaks fdf");
 		return (0);
 	}
 	fd = open(argv[1], O_RDONLY);
-	
-	printf(COLOR_YELLOW "BEFORE READING: %ld\n", time(NULL) - g_start);
-	
 	read_file(fd, m);
-
 	printf(COLOR_YELLOW "AFTER READING: %ld\n", time(NULL) - g_start);
 
-	m->mlx = mlx_init();
+	if(!(m->mlx = mlx_init()))
+	{
+		ft_putendl("error: The length of lines should be equal everywhere");
+		return (0);
+	}
 	m->win = mlx_new_window(m->mlx, WIN_W, WIN_H, "jules");
+	m->img.img_ptr = mlx_new_image(m->mlx, WIN_W - MENU_W, WIN_H);
+	m->img.addr = mlx_get_data_addr(&m->img.img_ptr, &m->img.bpp,
+			&m->img.size_line, (int*)&m->img.endian);
 
-	make_grid(m);
-	//put_dots(m, &isometric);
-	draw_2dgrid(m, &isometric);
-	//draw_line(m, m->pts[0][0], m->pts[1][2]);
+	make_grid(m); // нащо це ?
+	draw_2dgrid(m, &parallel);
 
 	mlx_hook(m->win, 2, 0, key_press, m);
-	mlx_mouse_hook(m->win, actions_m, m);
-
 	mlx_loop(m->mlx);
-
-	system("leaks fdf");
 	return (0);
 }

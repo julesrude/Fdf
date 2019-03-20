@@ -6,7 +6,7 @@
 /*   By: yruda <yruda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/02 19:10:24 by yruda             #+#    #+#             */
-/*   Updated: 2019/03/14 20:50:03 by yruda            ###   ########.fr       */
+/*   Updated: 2019/03/20 21:58:04 by yruda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,15 +104,16 @@ int		read_file(int fd, t_map *m)
 		{
 			m->pts[i][j].z0 = ft_atoi(&line[x]);
 			m->pts[i][j].color = read_color(&line[x]);
-			m->x_angle = 0;
-			m->y_angle = 0;
-			m->z_angle = 0;
 			x += next_stop(&line[x]);
 			j++;
 		}
 		free(line);
 		i++;
 	}
+	m->x_angle = 0;
+	m->y_angle = 0;
+	m->z_angle = 0;
+	m->zoom = 1;
 	free(line);
 	return (1);
 }
