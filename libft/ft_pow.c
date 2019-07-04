@@ -1,38 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_arrdup.c                                        :+:      :+:    :+:   */
+/*   ft_pow.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yruda <yruda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/26 19:13:59 by yruda             #+#    #+#             */
-/*   Updated: 2019/04/22 17:36:03 by yruda            ###   ########.fr       */
+/*   Created: 2019/04/19 17:39:10 by yruda             #+#    #+#             */
+/*   Updated: 2019/04/22 17:35:33 by yruda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*
-** allocates mamory for and returns a copy of a 2-story char array
-*/
-
-char	**ft_arrdup(char **arr, int height, int width)
+int		ft_pow(int num, int pow)
 {
-	char	**copy;
 	int		i;
+	int		result;
 
 	i = 0;
-	copy = NULL;
-	if (arr == NULL)
-		return (NULL);
-	if ((copy = (char **)malloc(sizeof(char*) * height)))
+	result = 1;
+	if (pow < 0)
+		return (-1);
+	while (i < pow)
 	{
-		while (i < height)
-		{
-			copy[i] = (char *)malloc(sizeof(char) * width);
-			ft_memcpy(copy[i], arr[i], width);
-			i++;
-		}
+		result *= num;
+		i++;
 	}
-	return (copy);
+	return (result);
 }

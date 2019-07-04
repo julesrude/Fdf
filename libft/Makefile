@@ -12,7 +12,7 @@ ft_iswhitespace.c	ft_memccpy.c		ft_putnbr.c		ft_striter.c		ft_strnstr.c\
 ft_itoa.c		ft_memchr.c		ft_putnbr_fd.c		ft_striteri.c		ft_strrchr.c\
 ft_lstadd.c		ft_memcmp.c		ft_putstr.c		ft_strjoin.c		ft_strsplit.c\
 get_next_line.c	ft_maxarr.c		ft_minarr.c		ft_arrdel.c			ft_arrdup.c\
-ft_sqrtint.c	ft_count_words.c
+ft_sqrtint.c	ft_count_words.c	ft_pow.c	ft_wordlen.c
 OBJ = $(FUNCTIONS:.c=.o)
 HEADER = includes/
 

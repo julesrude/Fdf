@@ -6,7 +6,7 @@
 /*   By: yruda <yruda@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/25 15:26:09 by yruda             #+#    #+#             */
-/*   Updated: 2019/02/02 19:12:57 by yruda            ###   ########.fr       */
+/*   Updated: 2019/04/23 17:35:03 by yruda            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,10 +98,16 @@ int					ft_lstsize(t_list *begin_list);
 int					ft_iswhitespace(int c);
 size_t				ft_numwords(char const *s);
 int					ft_count_words(char const *s);
+int					ft_wordlen(char *s);
+
+/*
+** math
+*/
 
 int					ft_maxarr(int *a, int n);
 int					ft_minarr(int *a, int n);
 int					ft_sqrtint(unsigned int i);
+int					ft_pow(int num, int pow);
 
 void				ft_arrdel(void **arr, int elems);
 char				**ft_arrdup(char **arr, int height, int width);

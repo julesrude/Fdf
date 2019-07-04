@@ -30,7 +30,6 @@ void    *mlx_new_image(mlx_ptr_t *mlx_ptr, int width, int height)
   newimg->vertexes[6] = 0.0;  newimg->vertexes[7] = -height;
   newimg->buffer = malloc(UNIQ_BPP*width*height);
   bzero(newimg->buffer, UNIQ_BPP*width*height);
-
   return (newimg);
 }
 

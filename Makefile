@@ -1,6 +1,7 @@
 NAME = fdf
-SOURCES = main.c    get_color.c    read_file.c    validate_file.c    draw.c \
-	calculate_img.c actions.c      rotations.c    projection.c		color_grade.c
+SOURCES = main.c    read_file.c    validate_file.c    draw.c \
+	calculate_img.c actions.c      rotations.c    projection.c		color.c \
+	bresenham.c
 HEADER = includes/
 OBJECTS = $(SOURCES:.c=.o)
 
@@ -19,7 +20,7 @@ $(NAME): $(LIBFT) $(LIBX) $(OBJECTS)
 	@echo "[ $(NAME) created ]"
 
 $(LIBX):
-	@make -C $(LIBX_FOLDER)
+	@make -C minilibx
 	@echo "[ $(LIBX) created ]"
 
 $(LIBFT):
