@@ -30,24 +30,23 @@ int		put_error(char *str_error)
 void	draw_menu(void *mlx, void *win, int color1, int color2)
 {
 	mlx_string_put(mlx, win, 10, 20, color2, "TURN:");
-	mlx_string_put(mlx, win, 10, 20, color1, "           x-axis 2,8");
-	mlx_string_put(mlx, win, 10, 40, color1, "           y-axis 4,6");
-	mlx_string_put(mlx, win, 10, 60, color1, "           z-axis 7,9,1,3");
-	mlx_string_put(mlx, win, 10, 80, color1, "           on numpad");
-	mlx_string_put(mlx, win, 10, 140, color2, "ZOOM:");
-	mlx_string_put(mlx, win, 10, 140, color1, "          '+' '-'");
-	mlx_string_put(mlx, win, 10, 180, color2, "MOVE:");
-	mlx_string_put(mlx, win, 10, 180, color1, "           arrows");
-	mlx_string_put(mlx, win, 10, 220, color2, "ISOMETRIC:");
-	mlx_string_put(mlx, win, 10, 220, color1, "           press 'I'");
-	mlx_string_put(mlx, win, 10, 260, color2, "TOP VIEW:");
-	mlx_string_put(mlx, win, 10, 260, color1, "           press 'T'");
+	mlx_string_put(mlx, win, 10, 20, color1, "           x-axis W,S");
+	mlx_string_put(mlx, win, 10, 40, color1, "           y-axis A,D");
+	mlx_string_put(mlx, win, 10, 60, color1, "           z-axis Q,E");
+	mlx_string_put(mlx, win, 10, 120, color2, "ZOOM:");
+	mlx_string_put(mlx, win, 10, 120, color1, "          '9' '0'");
+	mlx_string_put(mlx, win, 10, 160, color2, "MOVE:");
+	mlx_string_put(mlx, win, 10, 160, color1, "           arrows");
+	mlx_string_put(mlx, win, 10, 200, color2, "ISOMETRIC:");
+	mlx_string_put(mlx, win, 10, 200, color1, "           press 'I'");
+	mlx_string_put(mlx, win, 10, 240, color2, "TOP VIEW:");
+	mlx_string_put(mlx, win, 10, 240, color1, "           press 'T'");
 	mlx_string_put(mlx, win, 10, 740, color2, "CHOOSE COLOR THEME:");
-	mlx_string_put(mlx, win, 10, 760, color1, "original   'Q'");
-	mlx_string_put(mlx, win, 10, 780, color1, "           'W'");
+	mlx_string_put(mlx, win, 10, 760, color1, "original   '1'");
+	mlx_string_put(mlx, win, 10, 780, color1, "           '2'");
 	mlx_string_put(mlx, win, 10, 780, COLOR1_1, "|");
 	mlx_string_put(mlx, win, 10, 780, COLOR1_3, " |");
-	mlx_string_put(mlx, win, 10, 800, color1, "           'E'");
+	mlx_string_put(mlx, win, 10, 800, color1, "           '3'");
 	mlx_string_put(mlx, win, 10, 800, COLOR2_1, "|");
 	mlx_string_put(mlx, win, 10, 800, COLOR2_2, " |");
 }

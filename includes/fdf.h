@@ -37,29 +37,31 @@
 
 # define ANGLE (M_PI / 180)
 # define MOVE_STEP 10
-# define ZOOM_STEP 1.03
+# define ZOOM_IN_STEP 1.1
+# define ZOOM_OUT_STEP 1.03
 
 # define KEY_ESC 53
 # define KEY_LEFT 123
 # define KEY_RIGHT 124
 # define KEY_DOWN 125
 # define KEY_UP 126
-# define KEY_1 83
-# define KEY_2 84
-# define KEY_3 85
-# define KEY_4 86
-# define KEY_5 87
-# define KEY_6 88
-# define KEY_7 89
-# define KEY_8 91
-# define KEY_9 92
-# define KEY_PLUS 69
-# define KEY_MINUS 78
+# define KEY_1 18
+# define KEY_2 19
+# define KEY_3 20
+# define KEY_9 25
+# define KEY_0 29
+
 # define KEY_I 34
 # define KEY_T 17
 # define KEY_Q 12
 # define KEY_W 13
 # define KEY_E 14
+# define KEY_A 0
+# define KEY_S 1
+# define KEY_D 2
+# define KEY_Z 6
+# define KEY_X 7
+# define KEY_C 8
 
 # define COLOR_O1 0xbbddcc
 # define COLOR1_1 0x114b5f
