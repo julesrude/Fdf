@@ -14,7 +14,7 @@ It was a great [School 42](https://www.42.fr/) project as it encouraged my own r
 
 - only for MacOS
 
-## Examples:
+## Examples
 
 This map:
 
