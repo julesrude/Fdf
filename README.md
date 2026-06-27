@@ -2,13 +2,17 @@
 
 3D Wireframe Viewer. The program takes a map with numbers repesenting heights as parameter and creates its 3d representation.
 
-It was a great [School 42](https://www.42.fr/) (actually, I'm a student of [ukrainian 42 school](https://unit.ua/en/)) project as it encouraged my own research into the mathematics of graphics: Bresenham's line algorithm, color gradients, 3D projections, 3D rotations and so on. 
+It was a great [School 42](https://www.42.fr/) project as it encouraged my own research into the mathematics of graphics: Bresenham's line algorithm, color gradients, 3D projections, 3D rotations and so on. 
 
 ## Features
 
 - 3D rotations with the numpad
 - zoom
 - diferent color modes - color depends on the height
+
+## Limitations
+
+- only for MacOS
 
 ## Examples:
 
@@ -31,3 +35,13 @@ And the wide "mars" map:
 "mars" side face:
 
 <img width="1597" alt="fdf3" src="https://user-images.githubusercontent.com/10100078/60686605-93a5e180-9eb2-11e9-9457-76841a78994e.png">
+
+## How to run
+
+After cloning the repo, run:
+
+```shell
+> make
+> ./fdf maps/mars.fdf # for example
+> ./fdf maps/<any other map>
+```
